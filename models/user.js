@@ -7,19 +7,16 @@ const userSchema = new Schema({
     unique: true,
     required: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-  }
+  },
+  // thoughts: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'thought'
+  //   }
+  // ]
 
 })
 
 const user = model('user', userSchema);
-
-const handleError = (err) => console.log(err);
-
-// user.create({
-// username: "Ch40s2",
-// email: "test@test.com"
-// })
-// .then(result => console.log('created new user', result))
-// .catch(err => handleError(err));
 
 module.exports = user;
