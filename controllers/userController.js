@@ -40,5 +40,13 @@ module.exports = {
     } catch (error) {
       res.status(500).json(error);
     }
+  },
+  async deleteUser (req, res){
+    try {
+      const userData = await user.findOneAndRemove({_id: req.params.userId});
+      res.json(userData);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 };
