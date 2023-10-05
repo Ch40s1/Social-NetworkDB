@@ -1,4 +1,4 @@
-const user = require('../models/user');
+const {thought, user} = require('../models');
 
 module.exports = {
   async getUsers(req, res) {
@@ -23,6 +23,7 @@ module.exports = {
   async getSingleUser(req, res) {
     try {
       const userData = await user.findOne({ _id: req.params.userId })
+
 
       if (!userData) {
         return res.status(404).json({ message: 'No user with that ID' });

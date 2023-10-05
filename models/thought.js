@@ -7,6 +7,12 @@ const thoughtSchema = new Schema(
       minLength: 1,
       maxLength: 128,
     },
+    username: {
+      type: String
+    },
+    user_id: {
+      typ: Number
+    }
   },
 );
 
