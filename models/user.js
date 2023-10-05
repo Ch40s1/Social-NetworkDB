@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   username: {type: String, unique: true, trim: true, required: true},
   email: {
     type: String,
@@ -11,15 +11,15 @@ const userSchema = new mongoose.Schema({
 
 })
 
-const user = mongoose.model('user', userSchema);
+const user = model('user', userSchema);
 
 const handleError = (err) => console.log(err);
 
-user.create({
-username: "Ch40s1",
-email: "test@test.com"
-})
-.then(result => console.log('created new user', result))
-.catch(err => handleError(err));
+// user.create({
+// username: "Ch40s2",
+// email: "test@test.com"
+// })
+// .then(result => console.log('created new user', result))
+// .catch(err => handleError(err));
 
 module.exports = user;
