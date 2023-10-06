@@ -71,4 +71,33 @@ module.exports = {
     }
   },
 
+  async getSingleThought (req, res) {
+    try {
+      const thoughtData = await thoughtModel.findOne({_id: req.params.thoughtId})
+
+      if (!thoughtData){
+        return res.status(404).json({message: 'No thought with that ID'});
+      }
+      res.json(thoughtData);
+    } catch (error) {
+      res.status(500).json(err);
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+  // async createreaction (req,res){
+  //   try {
+  //     const reactionData =
+  //   } catch (error) {
+
+  //   }
+  // },
 };
