@@ -11,11 +11,16 @@ const thoughtSchema = new Schema(
       type: String
     },
     user_id: {
-      typ: Number
-    }
+      type: Schema.Types.ObjectId,
+      ref: 'userModel',
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
 );
 
-const thought = model('thought', thoughtSchema);
+const thoughtModel = model('thought', thoughtSchema);
 
-module.exports = thought;
+module.exports = thoughtModel;

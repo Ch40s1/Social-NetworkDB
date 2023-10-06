@@ -1,9 +1,9 @@
-const {thought, user} = require('../models');
+const {thoughModel, userModel} = require('../models');
 
 module.exports = {
   async getUsers(req, res) {
     try {
-      const users = await user
+      const users = await userModel
         .find()
         // .select('username email -_id');
 
@@ -14,7 +14,7 @@ module.exports = {
   },
   async createUser(req, res) {
     try {
-      const dbUserData = await user.create(req.body);
+      const dbUserData = await userModel.create(req.body);
       res.json(dbUserData);
     } catch (error) {
       res.status(500).json(error);
@@ -22,7 +22,7 @@ module.exports = {
   },
   async getSingleUser(req, res) {
     try {
-      const userData = await user.findOne({ _id: req.params.userId })
+      const userData = await userModel.findOne({ _id: req.params.userId })
 
 
       if (!userData) {
@@ -36,7 +36,7 @@ module.exports = {
   },
   async updateUser (req, res){
     try {
-      const dbUserData = await user.findOneAndUpdate({_id: req.params.userId}, req.body, { new: true });
+      const dbUserData = await userModel.findOneAndUpdate({_id: req.params.userId}, req.body, { new: true });
       res.json(dbUserData);
     } catch (error) {
       res.status(500).json(error);
@@ -44,7 +44,7 @@ module.exports = {
   },
   async deleteUser (req, res){
     try {
-      const userData = await user.findOneAndRemove({_id: req.params.userId});
+      const userData = await userModel.findOneAndRemove({_id: req.params.userId});
       res.json(userData);
     } catch (error) {
       res.status(500).json(error);
