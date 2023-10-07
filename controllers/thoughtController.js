@@ -85,19 +85,34 @@ module.exports = {
   },
 
 
+  async createReaction(req, res) {
+    try {
+      // get the thought ID from the request parameters
+      const thoughtId = req.params.thoughtId;
 
+      // find the thought by its ID
+      const thought = await thoughtModel.findById(thoughtId);
 
+      if (!thought) {
+        return res.status(404).json({ message: 'Thought not found' });
+      }
 
+      //create a new reaction based on the request body
+      const newReaction = {
+        reactionBody: req.body.reactionBody,
+        username: req.body.username,
+      };
 
+      // push the new reaction into the reactions array of the thought
+      thought.reactions.push(newReaction);
 
+      //save the thought with the new reaction
+      await thought.save();
 
+      res.json(thought);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
 
-
-  // async createreaction (req,res){
-  //   try {
-  //     const reactionData =
-  //   } catch (error) {
-
-  //   }
-  // },
 };
