@@ -1,11 +1,12 @@
 const {thoughModel, userModel} = require('../models');
 
 module.exports = {
+
   async getUsers(req, res) {
     try {
       const users = await userModel
         .find()
-        // .select('username email -_id');
+        .select('-__v')
 
       res.json(users);
     } catch (error) {
@@ -46,6 +47,20 @@ module.exports = {
     try {
       const userData = await userModel.findOneAndRemove({_id: req.params.userId});
       res.json(userData);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+  async addFriend (req,res){
+    try {
+      const mainUser = await userModel.findById({_id: req.params.userId});
+      const friend = await userModel.findById({_id: req.params.friendId});
+
+      mainUser.friends.push(friend);
+
+      await mainUser.save();
+
+      res.json(mainUser);
     } catch (error) {
       res.status(500).json(error);
     }
