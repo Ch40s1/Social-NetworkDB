@@ -64,5 +64,27 @@ module.exports = {
     } catch (error) {
       res.status(500).json(error);
     }
+  },
+  async deleteFriend(req, res) {
+    try {
+      const mainUser = await userModel.findById(req.params.userId);
+      const friendId = req.params.friendId; // Get the friend's _id
+
+      const friendIndex = mainUser.friends.indexOf(friendId);
+      if (friendIndex === -1) {
+        return res.status(404).json({ message: 'Friend not found' });
+      }
+
+      // Remove the friend's _id from the mainUser's friends array
+      mainUser.friends.splice(friendIndex, 1);
+
+      // Save the mainUser to update the friends array
+      await mainUser.save();
+
+      res.json(mainUser);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
+
 };
