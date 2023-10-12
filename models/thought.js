@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const moment = require('moment');
 
-
+// creates reaction schema
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -28,6 +28,7 @@ const reactionSchema = new Schema(
   }
 );
 
+// thought schema
 const thoughtSchema = new Schema(
   {
     text: {
@@ -50,10 +51,12 @@ const thoughtSchema = new Schema(
   },
 );
 
+// virtual for the reaction count
 thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
+// allows the json to use the virtual
 thoughtSchema.set('toJSON', { virtuals: true });
 
 const thoughtModel = model('thought', thoughtSchema);
