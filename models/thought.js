@@ -46,6 +46,9 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      set: function () {
+        return moment().format('YYYY-MM-DD HH:mm');
+      },
     },
     reactions: [reactionSchema],
   },

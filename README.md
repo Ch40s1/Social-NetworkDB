@@ -16,6 +16,7 @@ It uses MongoDB a popular choice for many social networks due to its speed with 
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
+- [Video Walkthrough](#video-walkthrough)
 - [Credits](#credits)
 - [License](#license)
 
@@ -50,6 +51,9 @@ Both methods use the api routes in order to make the requests.
 - Create, Update, View, and Delete Thoughts.
 - Create, and Delete Reactions.
 - Add, and Delete Friends.
+
+### Video Walkthrough
+<a href="https://drive.google.com/file/d/1XGvuwoD931PMAsJwmRBiDk7Pj2Bk-B-8/view">Link to Video:</a>
 
 ## Credits
 
